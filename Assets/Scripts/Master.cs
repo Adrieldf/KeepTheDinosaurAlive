@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Master : MonoBehaviour
 {
+    public static Master Instance;
     [SerializeField]
     private GameObject player = null;
     private float nextPosition = 450f;
@@ -20,7 +22,17 @@ public class Master : MonoBehaviour
     private GameObject sky = null;
     [SerializeField]
     private TextMeshProUGUI score = null;
+    [SerializeField]
+    private GameObject deathPanel = null;
+    [SerializeField]
+    private TextMeshProUGUI deathScore = null;
+    [SerializeField]
+    private TextMeshProUGUI deathHighScore = null;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void FixedUpdate()
     {
@@ -35,5 +47,33 @@ public class Master : MonoBehaviour
     private void Update()
     {
         score.text = player.transform.position.x.ToString("N0");
+    }
+
+    public void OpenDeathPanel()
+    {
+        deathScore.text = score.text;
+        int hs = PlayerPrefs.GetInt("highscore", 0);
+        int sc = int.Parse(deathScore.text);
+        if (sc > hs)
+        {
+            PlayerPrefs.SetInt("highscore", sc);
+            deathHighScore.text = sc.ToString();
+        }
+        else
+        {
+            deathHighScore.text = hs.ToString();
+        }
+
+        deathPanel.SetActive(true);
+
+    }
+    public void onClickRetry()
+    {
+        SceneManager.LoadScene("Game");
+    }
+    public void onClickExit()
+    {
+        SceneManager.LoadScene("MainMenu");
+
     }
 }
