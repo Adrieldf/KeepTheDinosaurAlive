@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5547568652468598066}
   - component: {fileID: 4936090557643165737}
   - component: {fileID: 4465351929840223649}
+  - component: {fileID: 763058910879806485}
   m_Layer: 0
   m_Name: Wall02_Desert
   m_TagString: Wall
@@ -111,3 +112,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 055ffeb0b815a604ebc2cc6cea6dd786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &763058910879806485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275642371346121467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 019a544496a343e449f6ace1637b9c51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGround: 0
+  groundCity: {fileID: 21300000, guid: 3586ffc5ad4b2d740b1d6e480ab46092, type: 3}
+  wallCity: {fileID: 21300000, guid: 4ebeb4cf18cb683409a57d76b41546a4, type: 3}
+  groundFlorest: {fileID: 21300000, guid: c33ef91dfaec81e4890b760f27b5bdf8, type: 3}
+  wallFlorest: {fileID: 21300000, guid: fca8860ff2fc7a649a275e0f0dc1b220, type: 3}

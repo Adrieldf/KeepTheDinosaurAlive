@@ -28,11 +28,15 @@ public class Master : MonoBehaviour
     private TextMeshProUGUI deathScore = null;
     [SerializeField]
     private TextMeshProUGUI deathHighScore = null;
-
+    public int BiomeSelected = 0;
+    //0 Desert / 1 City / 2 Forest
+    
     private void Awake()
     {
         Instance = this;
+        BiomeSelected = Random.Range(0, 3);
     }
+    
 
     private void FixedUpdate()
     {
