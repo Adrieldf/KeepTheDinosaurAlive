@@ -14,6 +14,11 @@ public class Dino : MonoBehaviour
     private float extendedJumpTimeLeft = 0f;
     private float nextIncreaseSpeed = 100f;
     private bool isDead = false;
+    private bool alreadyDied = false;
+    [SerializeField]
+    private GameObject deathParticle = null;
+    [SerializeField]
+    private GameObject dinoSprite = null;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -35,6 +40,9 @@ public class Dino : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (alreadyDied)
+            return;
+
         if (transform.position.x > nextIncreaseSpeed)
         {
             nextIncreaseSpeed += 200f;
@@ -54,7 +62,10 @@ public class Dino : MonoBehaviour
             if (!isDead)
                 rb.AddForce(new Vector2(0, jumpForce));
             if (isGrounded)
+            {
                 extendedJumpTimeLeft = 0.14f;
+                SoundController.Instance.PlayJumpSound();
+            }
         }
 
         if (!isDead)
@@ -63,7 +74,12 @@ public class Dino : MonoBehaviour
 
         if (isDead)
         {
+            SoundController.Instance.PlayDeathSound();
             Master.Instance.OpenDeathPanel();
+            Instantiate(deathParticle, transform.position + new Vector3(0, 1, 0), Quaternion.identity, transform);
+            dinoSprite.SetActive(false);
+            rb.velocity = new Vector2(0, 0);
+            alreadyDied = true;
         }
 
     }
