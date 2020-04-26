@@ -57,7 +57,7 @@ public class Dino : MonoBehaviour
         if (extendedJumpTimeLeft > 0f)
             extendedJumpTimeLeft -= Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.Space) && (isGrounded || extendedJumpTimeLeft > 0f))
+        if ((/*Input.GetKey(KeyCode.Space)*/ Input.GetButton("Jump") ) && (isGrounded || extendedJumpTimeLeft > 0f))
         {
             if (!isDead)
                 rb.AddForce(new Vector2(0, jumpForce));
